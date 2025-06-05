@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+chmod +xbin/brain-games
 import playEvenGame from '../src/games/even.js';
 
 playEvenGame();
