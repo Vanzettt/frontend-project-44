@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { greetUser } from '../cli.js';
+import greetUser from '../cli.js';
 const isEven = (num) => num % 2 === 0;
 
 export default function playEvenGame() {
