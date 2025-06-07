@@ -1,8 +1,9 @@
-
 import readlineSync from 'readline-sync';
-import { greetUser } from '../cli.js';  
+
+// Функция проверки числа на четность
 const isEven = (num) => num % 2 === 0;
 
+// Основная функция игры
 export default function playEvenGame() {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
@@ -14,7 +15,7 @@ export default function playEvenGame() {
   for (let i = 0; i < roundsCount; i += 1) {
     const number = Math.floor(Math.random() * 100);
     console.log(`Question: ${number}`);
-    const userAnswer = readlineSync.question('Your answer: ');
+    const userAnswer = readlineSync.question('Your answer: ').toLowerCase().trim(); // Добавлена обработка ввода
     const correctAnswer = isEven(number) ? 'yes' : 'no';
 
     if (userAnswer !== correctAnswer) {
