@@ -1,30 +1,30 @@
-// Файл: games/even.js
+import readlineSync from 'readline-sync';
+import greetUser from '../cli.js';
+
 const isEven = (num) => num % 2 === 0;
 
-// Основная функция игры
 export default function playEvenGame() {
-  const readlineSync = require('readline-sync');
-  
-  console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!`);
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+    const name = greetUser(); // Теперь получаем имя из greetUser
+    console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-  const roundsCount = 3;
+    let correctAnswers = 0;
+    const roundsToWin = 3;
 
-  for (let i = 0; i < roundsCount; i += 1) {
-    const number = Math.floor(Math.random() * 100);
-    console.log(`Question: ${number}`);
-    const userAnswer = readlineSync.question('Your answer: ').toLowerCase().trim();
-    const correctAnswer = isEven(number) ? 'yes' : 'no';
+    while (correctAnswers < roundsToWin) {
+        const number = Math.floor(Math.random() * 100);
+        console.log(`Question: ${number}`);
+        const userAnswer = readlineSync.question('Your answer: ').toLowerCase();
+        const correctAnswer = isEven(number) ? 'yes' : 'no';
 
-    if (userAnswer !== correctAnswer) {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${name}!`);
-      return;
+        if (userAnswer === correctAnswer) {
+            console.log('Correct!');
+            correctAnswers += 1;
+        } else {
+            console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+            console.log(`Let's try again, ${name}!`);
+            return;
+        }
     }
-    console.log('Correct!');
-  }
 
-  console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${name}!`);
 }
